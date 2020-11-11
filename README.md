@@ -23,7 +23,7 @@
 이 프로젝트는 혼자서는 위험한 상황을 해결할 수 없는 사람들에게 도움이 될 것으로 예상되고, 특히 1인가구와 병동에 도움이 될 것입니다.
 
 ### 기술 시스템 소개 : 
-![sgcd1_3_safety_room](https://user-images.githubusercontent.com/70886935/98117499-35956e00-1eed-11eb-856e-db0758a021c8.png)
+![sgcd1_3_safety_room](https://user-images.githubusercontent.com/70886935/98820718-e06bd600-2471-11eb-9b05-f8986f955933.png)
 
 **<센서 종류>**  
 인체 감지 센서: 사람이 들어왔음을 감지 + 사람이 특정시간 이상 감지되는 것을 확인  
