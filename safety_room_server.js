@@ -18,10 +18,10 @@ app.get ('/safety_room/graph', function (req, res) {
 		html = " "+ html
 		console.log('read file');
 
-		if (req.query.view == "distance") {
-			console.log ("distance graph\n");
+		if (req.query.view == "table1") {
+			console.log ("table1 distance graph\n");
 
-			var qstr = 'select time,distance from safety_room_1 where time >= NOW() - INTERVAL 24 HOUR';
+			var qstr = 'select * from safety_room_t1';
 			connection.query(qstr, function(err, rows, cols) {
 				if (err) {
 					console.error (err);
@@ -35,11 +35,11 @@ app.get ('/safety_room/graph', function (req, res) {
 					r = rows[i];
 					year = r.time.getYear() + 1900;
 					hour = r.time.getHours() + 9;
-					data += comma + "[new Date (" + year + "," + r.time.getMonth() + "," + r.time.getDate() + "," + hour + "," + r.time.getMinutes() + "," + r.time.getSeconds() + "),"+ r.distance + "]";
+					data += comma + "[new Date (" + year + "," + r.time.getMonth() + "," + r.time.getDate() + "," + hour + "," + r.time.getMinutes() + "," + r.time.getSeconds() + "),"+ r.action + ","+ r.distance1 + "," + r.distance2 + "," +r.distance3 +"]";
 					comma = ",";
 				}
 
-				var header = "['Date/Time', 'Distance']";
+				var header = "['Date/Time', 'Action','Distance1', 'Distance2', 'Distance3']";
 				html = html.replace("<%HEADER%>", header);
 				html = html.replace("<%DATA%>", data);
 
@@ -47,11 +47,11 @@ app.get ('/safety_room/graph', function (req, res) {
 				res.write(html);
 				res.end();
 			});
-		}
-		else if (req.query.view == "motion") {
-			console.log ("motion graph\n");
+		} 
+		else if (req.query.view == "table2") {
+			console.log ("table2 distance graph\n");
 
-			var qstr = 'select time, motion from safety_room_1 where time >= NOW() - INTERVAL 24 HOUR';
+			var qstr = 'select * from safety_room_t2';
 			connection.query(qstr, function(err, rows, cols) {
 				if (err) {
 					console.error (err);
@@ -65,25 +65,23 @@ app.get ('/safety_room/graph', function (req, res) {
 					r = rows[i];
 					year = r.time.getYear() + 1900;
 					hour = r.time.getHours() + 9;
-					data += comma + "[new Date (" + year + "," + r.time.getMonth() + "," + r.time.getDate() + "," + hour + "," + r.time.getMinutes() + "," + r.time.getSeconds() + ")," + r.motion +"]";
+					data += comma + "[new Date (" + year + "," + r.time.getMonth() + "," + r.time.getDate() + "," + hour + "," + r.time.getMinutes() + "," + r.time.getSeconds() + "),"+ r.action + ","+ r.distance1 + "," + r.distance2 + "," +r.distance3 +"]";
 					comma = ",";
 				}
 
-				var header = "['Date/Time', 'Motion']";
+				var header = "['Date/Time', 'Action','Distance1', 'Distance2', 'Distance3']";
 				html = html.replace("<%HEADER%>", header);
 				html = html.replace("<%DATA%>", data);
 
 				res.writeHeader(200, {"Content-Type": "text/html"});
 				res.write(html);
 				res.end();
-
 			});
+		} 
+		else if (req.query.view == "table3") {
+			console.log ("table3 distance graph\n");
 
-		}
-		else { // default : distance&motion
-			console.log ("distance & motion graph\n");
-
-			var qstr = 'select * from safety_room_1 where time >= NOW() - INTERVAL 24 HOUR';
+			var qstr = 'select * from safety_room_t3';
 			connection.query(qstr, function(err, rows, cols) {
 				if (err) {
 					console.error (err);
@@ -97,11 +95,71 @@ app.get ('/safety_room/graph', function (req, res) {
 					r = rows[i];
 					year = r.time.getYear() + 1900;
 					hour = r.time.getHours() + 9;
-					data += comma + "[new Date (" + year + "," + r.time.getMonth() + "," + r.time.getDate() + "," + hour + "," + r.time.getMinutes() + "," + r.time.getSeconds() + "),"+ r.distance + "," + r.motion +"]";
+					data += comma + "[new Date (" + year + "," + r.time.getMonth() + "," + r.time.getDate() + "," + hour + "," + r.time.getMinutes() + "," + r.time.getSeconds() + "),"+ r.action + ","+ r.distance1 + "," + r.distance2 + "," +r.distance3 +"]";
 					comma = ",";
 				}
 
-				var header = "['Date/Time', 'Distance', 'Motion']";
+				var header = "['Date/Time', 'Action','Distance1', 'Distance2', 'Distance3']";
+				html = html.replace("<%HEADER%>", header);
+				html = html.replace("<%DATA%>", data);
+
+				res.writeHeader(200, {"Content-Type": "text/html"});
+				res.write(html);
+				res.end();
+			});
+		} 
+		else if (req.query.view == "table4") {
+			console.log ("table4 distance graph\n");
+
+			var qstr = 'select * from safety_room_t4';
+			connection.query(qstr, function(err, rows, cols) {
+				if (err) {
+					console.error (err);
+					processs.exit();
+				}
+
+				var data = "";
+				var comma = "";
+				var time;
+				for (var i=0; i< rows.length ; i++) {
+					r = rows[i];
+					year = r.time.getYear() + 1900;
+					hour = r.time.getHours() + 9;
+					data += comma + "[new Date (" + year + "," + r.time.getMonth() + "," + r.time.getDate() + "," + hour + "," + r.time.getMinutes() + "," + r.time.getSeconds() + "),"+ r.action + ","+ r.distance1 + "," + r.distance2 + "," +r.distance3 +"]";
+					comma = ",";
+				}
+
+				var header = "['Date/Time', 'Action','Distance1', 'Distance2', 'Distance3']";
+				html = html.replace("<%HEADER%>", header);
+				html = html.replace("<%DATA%>", data);
+
+				res.writeHeader(200, {"Content-Type": "text/html"});
+				res.write(html);
+				res.end();
+			});
+		} 
+		else if (req.query.view == "table5") {
+			console.log ("table5 distance graph\n");
+
+			var qstr = 'select * from safety_room_t5';
+			connection.query(qstr, function(err, rows, cols) {
+				if (err) {
+					console.error (err);
+					processs.exit();
+				}
+
+				var data = "";
+				var comma = "";
+				var time;
+				for (var i=0; i< rows.length ; i++) {
+					r = rows[i];
+					year = r.time.getYear() + 1900;
+					hour = r.time.getHours() + 9;
+					data += comma + "[new Date (" + year + "," + r.time.getMonth() + "," + r.time.getDate() + "," + hour + "," + r.time.getMinutes() + "," + r.time.getSeconds() + "),"+ r.action + ","+ r.distance1 + "," + r.distance2 + "," +r.distance3 +"]";
+					comma = ",";
+				}
+
+				var header = "['Date/Time', 'Action','Distance1', 'Distance2', 'Distance3']";
 				html = html.replace("<%HEADER%>", header);
 				html = html.replace("<%DATA%>", data);
 
@@ -117,45 +175,189 @@ app.get ('/safety_room/update', function (req, res) {
 	r = req.query;
 	console.log (`update : ${JSON.stringify(r)}`);
 
-	distance = r.distance;
-	motion = r.motion;
-//	temp = r.temp;
-//	activity = r.activity;
+	table = r.table;
+	action = r.action;
+	distance1 = r.distance1;
+	distance2 = r.distance2;
+	distance3 = r.distance3;
 
-	connection.query (`insert into safety_room_1 (distance, motion) values (${distance}, ${motion})`, function (err, rows, cols) {
-		if (err) {
-			console.error (err);
-			process.exit();
-		}
-		else console.log (`current distance : ${distance} motion : ${motion}`);
-	});
-	
-	now = new Date();
-	time = now.getFullYear() + "-" + (1 + now.getMonth()) + "-" +  now.getDate() + " " + (9 + now.getHours()) + " : " + now.getMinutes();
-	res.send (`distance = ${distance} motion = ${motion} at time = ${time}`);
+	if (table == "table1") {
+		connection.query (`insert into safety_room_t1 (action, distance1, distance2, distance3) values (${action}, ${distance1}, ${distance2}, ${distance3})`, function (err, rows, cols) {
+			if (err) {
+				console.error (err);
+				process.exit();
+			}
+			//else console.log (`current distance1 : ${distance1}`);
+		});
+		
+		now = new Date();
+		time = now.getFullYear() + "-" + (1 + now.getMonth()) + "-" +  now.getDate() + " " + (9 + now.getHours()) + " : " + now.getMinutes();
+		res.send (`action = ${action} distance1 = ${distance1} distance2=${distance2} distance3 = ${distance3} at time = ${time}`);
+	}
+	else if (table == "table2") {
+		connection.query (`insert into safety_room_t2 (action, distance1, distance2, distance3) values (${action}, ${distance1}, ${distance2}, ${distance3})`, function (err, rows, cols) {
+			if (err) {
+				console.error (err);
+				process.exit();
+			}
+			//else console.log (`current distance1 : ${distance1}`);
+		});
+		
+		now = new Date();
+		time = now.getFullYear() + "-" + (1 + now.getMonth()) + "-" +  now.getDate() + " " + (9 + now.getHours()) + " : " + now.getMinutes();
+		res.send (`action = ${action} distance1 = ${distance1} distance2=${distance2} distance3 = ${distance3} at time = ${time}`);
+	}
+	else if (table == "table3") {	
+		connection.query (`insert into safety_room_t3 (action, distance1, distance2, distance3) values (${action}, ${distance1}, ${distance2}, ${distance3})`, function (err, rows, cols) {
+			if (err) {
+				console.error (err);
+				process.exit();
+			}
+			//else console.log (`current distance1 : ${distance1}`);
+		});
+		
+		now = new Date();
+		time = now.getFullYear() + "-" + (1 + now.getMonth()) + "-" +  now.getDate() + " " + (9 + now.getHours()) + " : " + now.getMinutes();
+		res.send (`action = ${action} distance1 = ${distance1} distance2=${distance2} distance3 = ${distance3} at time = ${time}`);
+	}
+	else if (table == "table4") {
+		connection.query (`insert into safety_room_t4 (action, distance1, distance2, distance3) values (${action}, ${distance1}, ${distance2}, ${distance3})`, function (err, rows, cols) {
+			if (err) {
+				console.error (err);
+				process.exit();
+			}
+			//else console.log (`current distance1 : ${distance1}`);
+		});
+		
+		now = new Date();
+		time = now.getFullYear() + "-" + (1 + now.getMonth()) + "-" +  now.getDate() + " " + (9 + now.getHours()) + " : " + now.getMinutes();
+		res.send (`action = ${action} distance1 = ${distance1} distance2=${distance2} distance3 = ${distance3} at time = ${time}`);
+	}
+	else if (table == "table5") {
+		connection.query (`insert into safety_room_t5 (action, distance1, distance2, distance3) values (${action}, ${distance1}, ${distance2}, ${distance3})`, function (err, rows, cols) {
+			if (err) {
+				console.error (err);
+				process.exit();
+			}
+			//else console.log (`current distance1 : ${distance1}`);
+		});
+		
+		now = new Date();
+		time = now.getFullYear() + "-" + (1 + now.getMonth()) + "-" +  now.getDate() + " " + (9 + now.getHours()) + " : " + now.getMinutes();
+		res.send (`action = ${action} distance1 = ${distance1} distance2=${distance2} distance3 = ${distance3} at time = ${time}`);
+	}
 });
 
 
 app.get ('/safety_room/data', function (req, res) {
-	var qstr = 'select * from safety_room_1 where time >= NOW() - INTERVAL 24 HOUR order by time desc';
-	connection.query(qstr, function(err, rows, cols) {
-		if (err) {
-			console.error (err);
-			process.exit();
-		}
-
-		console.log (rows.length + " records");
-		html = "";
-
-		for (var i=0; i< rows.length ; i++) {
-			r = rows[i];
-			r.time.setHours (r.time.getHours() + 9);
-			html += JSON.stringify (r) + '<br>';
-		}
-
-		res.send (html);
-	});
+	r = req.query;
+	table = r.table;
 	
+	if (table == "table1") {
+		var qstr = 'select * from safety_room_t1 order by time desc';
+	//	where time >= NOW() - INTERVAL 24 HOUR order by time desc';
+		connection.query(qstr, function(err, rows, cols) {
+			if (err) {
+				console.error (err);
+				process.exit();
+			}
+
+			console.log (rows.length + " records");
+			html = "";
+
+			for (var i=0; i< rows.length ; i++) {
+				r = rows[i];
+				r.time.setHours (r.time.getHours() + 9);
+				html += JSON.stringify (r) + '<br>';
+			}
+
+			res.send (html);
+		});
+	}
+	else if (table == "table2") {
+		var qstr = 'select * from safety_room_t2 order by time desc';
+	//	where time >= NOW() - INTERVAL 24 HOUR order by time desc';
+		connection.query(qstr, function(err, rows, cols) {
+			if (err) {
+				console.error (err);
+				process.exit();
+			}
+
+			console.log (rows.length + " records");
+			html = "";
+
+			for (var i=0; i< rows.length ; i++) {
+				r = rows[i];
+				r.time.setHours (r.time.getHours() + 9);
+				html += JSON.stringify (r) + '<br>';
+			}
+
+			res.send (html);
+		});
+	}
+	else if (table == "table3") {
+		var qstr = 'select * from safety_room_t3 order by time desc';
+	//	where time >= NOW() - INTERVAL 24 HOUR order by time desc';
+		connection.query(qstr, function(err, rows, cols) {
+			if (err) {
+				console.error (err);
+				process.exit();
+			}
+
+			console.log (rows.length + " records");
+			html = "";
+
+			for (var i=0; i< rows.length ; i++) {
+				r = rows[i];
+				r.time.setHours (r.time.getHours() + 9);
+				html += JSON.stringify (r) + '<br>';
+			}
+
+			res.send (html);
+		});
+	}
+	else if (table == "table4") {
+		var qstr = 'select * from safety_room_t4 order by time desc';
+	//	where time >= NOW() - INTERVAL 24 HOUR order by time desc';
+		connection.query(qstr, function(err, rows, cols) {
+			if (err) {
+				console.error (err);
+				process.exit();
+			}
+
+			console.log (rows.length + " records");
+			html = "";
+
+			for (var i=0; i< rows.length ; i++) {
+				r = rows[i];
+				r.time.setHours (r.time.getHours() + 9);
+				html += JSON.stringify (r) + '<br>';
+			}
+
+			res.send (html);
+		});
+	}
+	else if (table == "table5") {
+		var qstr = 'select * from safety_room_t5 order by time desc';
+	//	where time >= NOW() - INTERVAL 24 HOUR order by time desc';
+		connection.query(qstr, function(err, rows, cols) {
+			if (err) {
+				console.error (err);
+				process.exit();
+			}
+
+			console.log (rows.length + " records");
+			html = "";
+
+			for (var i=0; i< rows.length ; i++) {
+				r = rows[i];
+				r.time.setHours (r.time.getHours() + 9);
+				html += JSON.stringify (r) + '<br>';
+			}
+
+			res.send (html);
+		});
+	}
 });
 
 var server = app.listen (8000, function () {
