@@ -1,0 +1,4 @@
+select tablenum,time from safety_room_t1 where action='1' union 
+select tablenum,time from safety_room_t2 where action='1' union 
+select tablenum,time from safety_room_t3 where action='1' order by time desc;
+//설치한 레이어에서 action = 1인 레이어가 동시간대에 2-3개 이상 존재하면 그 사람은 현재 누워있는 상태이다.
