@@ -1,3 +1,17 @@
+const accountSid = 'mySid';//private Sid from twilio
+const authToken = 'myToken';//private authToken from twilio
+var client = require('twilio')(accountSid,authToken);
+
+client.messages
+.create({
+        body:'MESSAGE',
+        from: 'MY phone',
+        to: 'receiver'
+})
+.then(message => console.log(message.sid));
+
+
+
 var express = require('express');
 var app = express();
 fs = require('fs');
