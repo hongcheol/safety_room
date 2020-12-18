@@ -31,7 +31,8 @@ _거리는 멀어도 관심은 가깝게._
 		* 연구용∙마케팅용 자료로 사용 가능
 
 ### 기술 시스템 소개 : 
-![sgcd1_3_safety_room](https://user-images.githubusercontent.com/70886935/98820718-e06bd600-2471-11eb-9b05-f8986f955933.png)
+![SafetyRoom_기술체계도](https://user-images.githubusercontent.com/70886935/102563445-a484fa00-411c-11eb-9ef6-8caf8a6cde67.PNG)
+
 
 **<센서 종류>**  
 인체 감지 센서: 사용자 동선 데이터 수집 <br>
