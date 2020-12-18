@@ -41,6 +41,12 @@ _거리는 멀어도 관심은 가깝게._
 ![11](https://user-images.githubusercontent.com/70886935/102450696-5f0ff080-407a-11eb-9054-4cec41e62b60.png)
 ![12](https://user-images.githubusercontent.com/70886935/102450739-75b64780-407a-11eb-92ff-152569ded7c8.png)
 	
+### 정보 제공 방법
+위급 상황 발생 시, 보호자의 전화번호로 문자 메시지 전송 <br>
+![Screenshot_20201217-211331_Messages](https://user-images.githubusercontent.com/70886935/102562796-2f64f500-411b-11eb-8bf1-b578e31868bf.jpg)
+
+문자 메시지의 URL을 누르면 현재 방에 대한 상황 파악 가능
+
 ## 팀 소개
 ### 팀명 : Safety Room
 | 이름 | 역할 |
