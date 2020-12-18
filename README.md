@@ -33,15 +33,18 @@ _거리는 멀어도 관심은 가깝게._
 ### 기술 시스템 소개 : 
 ![SafetyRoom_기술체계도](https://user-images.githubusercontent.com/70886935/102563445-a484fa00-411c-11eb-9ef6-8caf8a6cde67.PNG)
 
-
 **<센서 종류>**  
 인체 감지 센서: 사용자 동선 데이터 수집 <br>
 초음파 거리 센서: 사용자 상태(앉아있다, 서있다, 누워있다) 수집 (측정거리 변화를 통해 계산)  
 
+
 ### 센서 설치 및 상태 구분 방법
 ![11](https://user-images.githubusercontent.com/70886935/102450696-5f0ff080-407a-11eb-9054-4cec41e62b60.png)
 ![12](https://user-images.githubusercontent.com/70886935/102450739-75b64780-407a-11eb-92ff-152569ded7c8.png)
-	
+
+갑작스러운 상태 변화 시 위급 상황이라고 판단
+
+
 ### 정보 제공 방법
 위급 상황 발생 시, 보호자의 전화번호로 문자 메시지 전송 <br>
 ![Screenshot_20201217-211331_Messages](https://user-images.githubusercontent.com/70886935/102562796-2f64f500-411b-11eb-8bf1-b578e31868bf.jpg)
